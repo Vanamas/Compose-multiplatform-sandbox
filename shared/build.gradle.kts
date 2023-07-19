@@ -1,14 +1,16 @@
 plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
+    kotlin("plugin.serialization") version "1.5.0"
     id("com.android.library")
     id("org.jetbrains.compose")
+    id("com.squareup.sqldelight")
+    id("kotlin-parcelize")
+    id("com.arkivanov.parcelize.darwin")
 }
 
 kotlin {
     android()
-
-    jvm("desktop")
 
     iosX64()
     iosArm64()
@@ -32,16 +34,49 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material)
+                implementation(compose.material3)
+                implementation(compose.materialIconsExtended)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
                 implementation(compose.components.resources)
+                // koin
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                // Ktor
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.content.negolation)
+                implementation(libs.ktor.json)
+                implementation(libs.coroutines.core)
+                // Serialization
+                implementation(libs.kotlinx.serialization.core)
+                implementation(libs.kotlinx.datetime)
+                // Logging
+                implementation(libs.napier)
+                // DB
+                implementation(libs.sql.delight.runtime)
+                implementation(libs.sql.delight.coroutines.extensions)
+                // Moko
+                implementation(libs.moko.viewmodel)
+                implementation(libs.moko.flow)
+                implementation(libs.moko.permissions)
+                implementation(libs.moko.media)
+                // Decompose
+                implementation(libs.decompose)
+                implementation(libs.decompose.compose.multiplatform)
+
+                // Navigator
+                implementation(libs.voyager.core)
+                implementation(libs.voyager.navigator)
+                implementation(libs.voyager.transitions)
+
             }
         }
         val androidMain by getting {
             dependencies {
-                api("androidx.activity:activity-compose:1.6.1")
-                api("androidx.appcompat:appcompat:1.6.1")
-                api("androidx.core:core-ktx:1.9.0")
+                api(libs.activity.compose)
+                api(libs.core.ktx)
+
+                implementation(libs.ktor.client.okhttp)
+                implementation(libs.sql.delight.android)
             }
         }
         val iosX64Main by getting
@@ -52,10 +87,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
-        }
-        val desktopMain by getting {
             dependencies {
-                implementation(compose.desktop.common)
+                implementation(libs.ktor.client.darwin)
+                implementation(libs.sql.delight.ios)
             }
         }
     }
@@ -74,10 +108,16 @@ android {
         targetSdk = (findProperty("android.targetSdk") as String).toInt()
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlin {
-        jvmToolchain(11)
+        jvmToolchain(17)
+    }
+}
+
+sqldelight {
+    database("AppDatabase") {
+        packageName = "db"
     }
 }

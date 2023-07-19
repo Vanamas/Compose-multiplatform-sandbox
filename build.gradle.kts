@@ -1,3 +1,14 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath(libs.sql.delight.gradle.plugin)
+        classpath("com.arkivanov.parcelize.darwin:gradle-plugin:0.1.4")
+    }
+}
+
 plugins {
     // this is necessary to avoid the plugins to be loaded multiple times
     // in each subproject's classloader
