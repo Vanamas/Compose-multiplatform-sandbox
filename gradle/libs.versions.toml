@@ -58,8 +58,6 @@ sql-delight-runtime = { module = "com.squareup.sqldelight:runtime", version.ref 
 sql-delight-coroutines-extensions = { module = "com.squareup.sqldelight:coroutines-extensions", version.ref = "sql-delight" }
 sql-delight-android = { module = "com.squareup.sqldelight:android-driver", version.ref = "sql-delight" }
 sql-delight-ios = { module = "com.squareup.sqldelight:native-driver", version.ref = "sql-delight" }
-moko-viewmodel = { module = "dev.icerock.moko:mvvm-compose", version.ref = "moko-mvvm" }
-moko-flow = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "moko-mvvm" }
 moko-permissions = { module = "dev.icerock.moko:permissions-compose", version.ref = "moko-permissions" }
 moko-media = { module = "dev.icerock.moko:media-compose", version.ref = "moko-media" }
 voyager-core = { module = "cafe.adriel.voyager:voyager-core", version.ref = "voyager"}

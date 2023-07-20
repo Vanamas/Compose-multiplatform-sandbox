@@ -2,11 +2,8 @@ package presentation.screen.post
 
 import cafe.adriel.voyager.core.model.StateScreenModel
 import cafe.adriel.voyager.core.model.coroutineScope
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import domain.model.Post
 import domain.usecase.GetPostUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import presentation.screen.common.model.UiState
 

@@ -22,6 +22,7 @@ import org.koin.core.module.dsl.bind
 import org.koin.core.module.dsl.factoryOf
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
+import presentation.screen.gallery.ImageChooserViewModel
 import presentation.screen.home.HomeViewModel
 import presentation.screen.post.PostViewModel
 import presentation.screen.post.PostsViewModel
@@ -50,6 +51,7 @@ fun appModule() = listOf(
 )
 
 val viewModelModule = module {
+    factoryOf(::ImageChooserViewModel)
     factoryOf(::HomeViewModel)
     factoryOf(::PostsViewModel)
     factoryOf(::PostViewModel)

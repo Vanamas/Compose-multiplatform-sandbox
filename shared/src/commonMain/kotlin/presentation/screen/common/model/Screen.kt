@@ -5,6 +5,9 @@ import cafe.adriel.voyager.core.model.rememberScreenModel
 import cafe.adriel.voyager.core.screen.Screen
 import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
+import presentation.screen.ComponentScreen
+import presentation.screen.gallery.ImageChooserScreen
+import presentation.screen.gallery.ImageChooserViewModel
 import presentation.screen.home.HomeScreen
 import presentation.screen.home.HomeViewModel
 import presentation.screen.post.PostDetailScreen
@@ -47,5 +50,20 @@ data class PostDetail(val id: Long) : Screen {
         val screenModel = rememberScreenModel { postViewModel }
         PostDetailScreen(screenModel)
     }
+}
 
+object ImageChooser : Screen {
+    @Composable
+    override fun Content() {
+        val imageChooserViewModel: ImageChooserViewModel = koinInject()
+        val screenModel = rememberScreenModel { imageChooserViewModel }
+        ImageChooserScreen(screenModel)
+    }
+}
+
+object Components : Screen {
+    @Composable
+    override fun Content() {
+        ComponentScreen()
+    }
 }

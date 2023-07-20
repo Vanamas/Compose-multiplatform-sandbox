@@ -19,6 +19,9 @@ fun App() {
     }
 }
 
+@Composable
+expect fun Test()
+
 expect fun getPlatformName(): String
 
 expect class Platform() {

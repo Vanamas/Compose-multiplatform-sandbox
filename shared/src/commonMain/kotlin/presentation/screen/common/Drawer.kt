@@ -44,7 +44,6 @@ import org.jetbrains.compose.resources.painterResource
 import presentation.screen.common.model.Home
 import presentation.screen.common.model.Posts
 
-// T for generic type to be used for the picking
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalResourceApi::class)
 @Composable
 fun AppDrawerContent(
@@ -139,20 +138,3 @@ data class AppDrawerItemInfo(
     val title: String,
     val iconVector: ImageVector
 )
-
-
-// list of the buttons
-object DrawerParams {
-    val drawerButtons = arrayListOf(
-        AppDrawerItemInfo(
-            Home,
-            "Home",
-            Icons.Filled.Home
-        ),
-        AppDrawerItemInfo(
-            Posts,
-            "Posts",
-            Icons.Filled.PostAdd
-        ),
-    )
-}

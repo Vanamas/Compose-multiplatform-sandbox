@@ -34,6 +34,7 @@ kotlin {
             dependencies {
                 implementation(compose.runtime)
                 implementation(compose.foundation)
+                implementation(compose.material)
                 implementation(compose.material3)
                 implementation(compose.materialIconsExtended)
                 @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
@@ -55,8 +56,6 @@ kotlin {
                 implementation(libs.sql.delight.runtime)
                 implementation(libs.sql.delight.coroutines.extensions)
                 // Moko
-                implementation(libs.moko.viewmodel)
-                implementation(libs.moko.flow)
                 implementation(libs.moko.permissions)
                 implementation(libs.moko.media)
                 // Decompose
@@ -67,7 +66,6 @@ kotlin {
                 implementation(libs.voyager.core)
                 implementation(libs.voyager.navigator)
                 implementation(libs.voyager.transitions)
-
             }
         }
         val androidMain by getting {
@@ -115,6 +113,7 @@ android {
         jvmToolchain(17)
     }
 }
+
 
 sqldelight {
     database("AppDatabase") {
