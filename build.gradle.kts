@@ -5,6 +5,7 @@ buildscript {
 
     dependencies {
         classpath(libs.sql.delight.gradle.plugin)
+        classpath(libs.moko.resources.plugin)
         classpath("com.arkivanov.parcelize.darwin:gradle-plugin:0.1.4")
     }
 }

@@ -7,6 +7,7 @@ plugins {
     id("com.squareup.sqldelight")
     id("kotlin-parcelize")
     id("com.arkivanov.parcelize.darwin")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 kotlin {
@@ -58,6 +59,8 @@ kotlin {
                 // Moko
                 implementation(libs.moko.permissions)
                 implementation(libs.moko.media)
+                api(libs.moko.resources)
+                api(libs.moko.resourcesCompose)
                 // Decompose
                 implementation(libs.decompose)
                 implementation(libs.decompose.compose.multiplatform)
@@ -119,4 +122,16 @@ sqldelight {
     database("AppDatabase") {
         packageName = "db"
     }
+}
+
+dependencies {
+    commonMainApi("dev.icerock.moko:resources:0.23.0")
+    commonMainApi("dev.icerock.moko:resources-compose:0.23.0") // for compose multiplatform
+
+    commonTestImplementation("dev.icerock.moko:resources-test:0.23.0")
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "com.myapplication" // required
+    multiplatformResourcesClassName = "MR" // optional, default MR
 }

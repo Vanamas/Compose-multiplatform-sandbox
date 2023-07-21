@@ -20,6 +20,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import cafe.adriel.voyager.navigator.LocalNavigator
 import cafe.adriel.voyager.navigator.currentOrThrow
+import com.myapplication.MR
+import dev.icerock.moko.resources.compose.stringResource
 import domain.model.Post
 import presentation.screen.common.BackButtonScaffold
 import presentation.screen.common.UiStateScreen
@@ -37,7 +39,7 @@ fun PostsScreen(postViewModel: PostsViewModel) {
 
     val navigator = LocalNavigator.currentOrThrow
 
-    BackButtonScaffold("Příspěvky") {
+    BackButtonScaffold(stringResource(MR.strings.posts_title)) {
         UiStateScreen(state) { data ->
             Box(modifier = Modifier.fillMaxSize().padding(it)) {
                 Posts(
@@ -59,7 +61,7 @@ private fun Posts(
     clickListener: (Post) -> Unit
 ) {
     LazyColumn(modifier) {
-        items(items = posts) { post ->
+        items(items = posts, key = { it.id }) { post ->
             Post(item = post, clickListener = clickListener)
             Divider()
         }
